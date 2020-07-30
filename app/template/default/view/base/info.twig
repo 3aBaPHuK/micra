@@ -1,0 +1,11 @@
+{% block info %}
+    <a href="#">
+        <span class="uk-icon uk-margin-small-right" uk-icon="icon:question"></span>
+    </a>
+    <div class="uk-navbar-dropdown uk-width-auto">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li><a href="javascript:void(0)" class="uk-text-nowrap">{{ 'INTERFACE_VERSION'|t }}: {{ getCurrentVersion() }}</a></li>
+            <li><a href="javascript:void(0)" class="uk-text-nowrap">{{ 'LIBRARY_VERSION'|t }}: {{ getLibraryVersion() }}</a></li>
+        </ul>
+    </div>
+{% endblock %}

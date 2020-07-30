@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Laximo.OEM Live Demo Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+<div class="content">
+    <div class="uk-container uk-container-large main-container">
+        {% block pageTitle %}
+            <h3 class="uk-margin-remove-bottom uk-margin-remove-top">{% block heading %}{% endblock %}</h3>
+            <small class="uk-margin-bottom uk-display-block">{% block headingDesc %}{% endblock %}</small>
+        {% endblock %}
+        {% block body %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

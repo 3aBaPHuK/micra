@@ -1,0 +1,10 @@
+.idea
+cache
+config.json
+package-lock.json
+composer.lock
+node_modules
+vendor
+output
+dist
+/app/test.json

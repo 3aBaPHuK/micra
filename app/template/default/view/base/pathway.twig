@@ -1,0 +1,12 @@
+{% block pathway %}
+    {% set pathway = pathway.getPathway() %}
+    {% spaceless %}
+        {% if pathway %}
+            <ul class="uk-breadcrumb uk-margin-top uk-margin-bottom">
+                {% for item in pathway %}
+                    <li><a href="{{ item.link ? item.link : 'javascript:void(0)' }}">{{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% use 'base/info.twig' %}
+
+{% block mainMenu %}
+    {% spaceless %}
+        <div class="uk-navbar-left main-menu">
+            <ul class="uk-navbar-nav">
+                <li class="uk-logo uk-margin-left uk-margin-right">
+                    <div class="logo uk-background-contain uk-background-norepeat"></div>
+                </li>
+
+                {% for item in menu.getMenu('mainMenu') %}
+                    {% set link = item.customHref ? item.customHref : createUrl(item.controller, item.action) %}
+                    <li class="uk-parent uk-margin-left">
+                        <a target="{{ item.target }}" class="{{ link.active ? 'uk-active' : '' }}" href="{{ link }}">
+                            {% if item.icon %}
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon:{{ item.icon }}"></span>
+                            {% endif %}
+                            {{ item.name |t }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li class="uk-parent uk-margin-right">
+                    <a>
+                        <wc-language-select class="language-select" label-field="name" value-field="value" data="{{ languages|json_encode }}" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    {% endspaceless %}
+{% endblock %}
