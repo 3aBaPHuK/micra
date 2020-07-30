@@ -1,4 +1,15 @@
 {
+  "name": "3abaphuk/micra",
+  "license": "MIT",
+  "type": "project",
+  "keywords": ["php","light","framework"],
+  "authors": [
+    {
+      "name": "Andre Elnikov",
+      "email": "3aBaPHuK@gmai.com",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "app\\": "app/"
