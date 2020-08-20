@@ -72,10 +72,10 @@ class Controller
                 'provider'   => 'app\provider\ConfigAuthProvider',
                 'userEntity' => 'app\model\User'
             ]);
-        }
 
-        if (!$this->auth->isAuthorize()) {
-            $this->renderNotAllowed();
+            if (!$this->auth->isAuthorize()) {
+                $this->renderNotAllowed();
+            }
         }
 
         $rawLanguages    = $this->getConfigParam('languages');
