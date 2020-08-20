@@ -8,6 +8,7 @@
 
 namespace app\controller;
 
+use app\module\BasicAuth\BasicAuth;
 use app\module\breadcrumbs\Breadcrumbs;
 use app\module\input\Input;
 use app\module\language\Language;
@@ -19,6 +20,7 @@ use app\traits\TwigTrait;
  * @property Breadcrumbs pathway
  * @property  Language   language
  * @property  Input      input
+ * @property  BasicAuth  auth
  */
 class Controller
 {
@@ -64,6 +66,17 @@ class Controller
         $this->installCustomModule('app\module\breadcrumbs\Breadcrumbs', 'pathway');
         $this->installCustomModule('app\module\language\Language', 'language', ['language' => $this->getCurrentLanguage()]);
         $this->installCustomModule('app\module\input\Input', 'input');
+
+        if ($authModule = $this->getConfigParam('authorization')) {
+            $this->installCustomModule($authModule, 'auth', [
+                'provider'   => 'app\provider\ConfigAuthProvider',
+                'userEntity' => 'app\model\User'
+            ]);
+        }
+
+        if (!$this->auth->isAuthorize()) {
+            $this->renderNotAllowed();
+        }
 
         $rawLanguages    = $this->getConfigParam('languages');
         $this->languages = $this->getLanguageArr($rawLanguages);
@@ -153,6 +166,28 @@ class Controller
         echo json_encode($data);
         die();
     }
+
+    public function renderNotAllowed()
+    {
+
+        $this->render('error', '401', (array)$this);
+        die();
+    }
+
+
+    public function renderNotEnoughAccessGranted()
+    {
+
+        $this->render('error', '403', (array)$this);
+        die();
+    }
+
+    public function renderInternalError(string $message)
+    {
+
+        $this->render('error', '500', ['message' => $message]);
+    }
+
 
     protected function enqueueMessage($message, $messageType = 'success')
     {

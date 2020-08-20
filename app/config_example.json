@@ -1,0 +1,10 @@
+{
+    "template": "default",
+    "languages": ["ru_RU", "en_US"],
+    "defaultLanguage": "ru_RU",
+    "authorization": "app\\module\\BasicAuth\\BasicAuth",
+    "authorizationData": {
+        "login": "user",
+        "password": "0000"
+    }
+}
